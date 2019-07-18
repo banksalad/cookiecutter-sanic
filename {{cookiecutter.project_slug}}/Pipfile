@@ -11,6 +11,7 @@ pytest = "==4.6.3"
 pytest-cov = "==2.7.1"
 
 [packages]
+sanic = "==19.6.2"
 
 [requires]
 python_version = "3.7"
