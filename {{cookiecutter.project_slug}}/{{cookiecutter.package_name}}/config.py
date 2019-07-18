@@ -25,11 +25,11 @@ class Configuration:
 def init_config(d: dict = None) -> Configuration:
     d = d or os.environ
     return Configuration(
-        d.get('{{cookiecutter.package_name|upper}}_DEBUG', str(False)).upper() == str(True).upper(),
-        d.get('{{cookiecutter.package_name|upper}}_ENVIRONMENT'),
+        d.get('{{ cookiecutter.package_name|upper }}_DEBUG', str(False)).upper() == str(True).upper(),
+        d.get('{{ cookiecutter.package_name|upper }}_ENVIRONMENT'),
         HTTPConfiguration(
-            d.get('{{cookiecutter.package_name|upper}}_HTTP_HOST', '0.0.0.0'),
-            int(d.get('{{cookiecutter.package_name|upper}}_HTTP_PORT', 8000)),
+            d.get('{{ cookiecutter.package_name|upper }}_HTTP_HOST', '0.0.0.0'),
+            int(d.get('{{ cookiecutter.package_name|upper }}_HTTP_PORT', 8000)),
         ),
-        SentryConfiguration(d.get('{{cookiecutter.package_name|upper}}_SENTRY_DSN')),
+        SentryConfiguration(d.get('{{ cookiecutter.package_name|upper }}_SENTRY_DSN')),
     )
