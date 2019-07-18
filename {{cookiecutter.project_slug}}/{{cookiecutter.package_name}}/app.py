@@ -27,9 +27,7 @@ def create_app(config: Configuration):
 
     @app.route('/')
     async def index(_):
-        return response.text(
-            f'{{ cookiecutter.project_name }} ({__version__})'
-        )
+        return response.text(f'{{ cookiecutter.project_name }} ({__version__})')
 
     app.blueprint(view.app)
 

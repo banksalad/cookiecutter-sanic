@@ -31,7 +31,5 @@ def init_config(d: dict = None) -> Configuration:
             d.get('{{cookiecutter.package_name|upper}}_HTTP_HOST', '0.0.0.0'),
             int(d.get('{{cookiecutter.package_name|upper}}_HTTP_PORT', 8000)),
         ),
-        SentryConfiguration(
-            d.get('{{cookiecutter.package_name|upper}}_SENTRY_DSN')
-        ),
+        SentryConfiguration(d.get('{{cookiecutter.package_name|upper}}_SENTRY_DSN')),
     )
