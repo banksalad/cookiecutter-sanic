@@ -1,0 +1,20 @@
+sudo: required
+
+language: python
+
+dist: xenial
+
+python:
+  - "3.7"
+
+cache:
+  - pip
+
+before_install:
+  - pip install -U pip
+
+install:
+  - pip install -r requirements-dev.txt
+
+script:
+  - pytest

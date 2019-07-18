@@ -1,0 +1,31 @@
+sudo: required
+
+language: python
+
+dist: xenial
+
+python:
+  - "3.7"
+
+env:
+  global:
+    - PIPENV_VENV_IN_PROJECT=1
+    - PIPENV_IGNORE_VIRTUALENVS=1
+    - PIPENV_DONT_LOAD_ENV=1
+
+cache:
+  - pip
+
+before_install:
+  - pip install -U pip
+
+install:
+  - make
+
+script:
+  - pipenv run make check
+  - pipenv run make test
+
+after_success:
+  - pipenv run make coverage
+  - bash < (curl -s https://codecov.io/bash)

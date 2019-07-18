@@ -1,0 +1,6 @@
+black==19.3b0
+codecov==2.0.15
+isort==4.3.20
+pylint==2.3.1
+pytest==4.6.3
+pytest-cov==2.7.1
