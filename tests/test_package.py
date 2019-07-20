@@ -3,7 +3,9 @@ from typing import List, Iterator
 import pytest
 
 
-@pytest.mark.parametrize('requirements', ['requirements-dev.txt'])
+@pytest.mark.parametrize(
+    'requirements', ['requirements.txt', 'requirements-dev.txt']
+)
 def test_requirements_include_specifiers(cookies, context, requirements):
     """
     We expect each package has `==` specifier
@@ -22,7 +24,7 @@ def test_requirements_include_specifiers(cookies, context, requirements):
     assert all('==' in l for l in lines)
 
 
-@pytest.mark.parametrize('packages', ['[dev-packages]'])
+@pytest.mark.parametrize('packages', ['[packages]', '[dev-packages]'])
 def test_pipfile_include_specifiers(cookies, context, packages):
     """
     We expect each package has `==` specifier

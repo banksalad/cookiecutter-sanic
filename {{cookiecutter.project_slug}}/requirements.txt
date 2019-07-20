@@ -1,0 +1,2 @@
+sanic==19.6.2
+sentry-sdk==0.10.2
