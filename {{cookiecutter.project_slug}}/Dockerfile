@@ -1,13 +1,15 @@
-FROM python:3.7.3-alpine3.9 AS base
+FROM python:3.7.3-slim-stretch AS base
 
 RUN pip install -U pip
 
 # Build Stage
 FROM base AS build
 
-RUN apk update && apk add --no-cache --upgrade \
-    build-base \
-    gcc
+RUN apt-get update && \
+    apt-get install -y \
+        build-essential \
+        gcc && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /wheels
 COPY requirements.txt .
