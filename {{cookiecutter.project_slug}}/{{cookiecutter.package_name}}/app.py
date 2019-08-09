@@ -18,15 +18,15 @@ def create_app(config: Configuration):
     )
 
     @app.listener('before_server_start')
-    async def init(app_, loop):
+    async def init(app_, loop):  # pylint: disable=unused-variable
         pass
 
     @app.listener('after_server_stop')
-    async def close(app_, loop):
+    async def close(app_, loop):  # pylint: disable=unused-variable
         pass
 
     @app.route('/')
-    async def index(_):
+    async def index(_):  # pylint: disable=unused-variable
         return response.text(f'{{ cookiecutter.project_name }} ({__version__})')
 
     app.blueprint(view.app)
