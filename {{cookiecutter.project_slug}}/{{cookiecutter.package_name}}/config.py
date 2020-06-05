@@ -18,6 +18,7 @@ class SentryConfiguration:
 class Configuration:
     debug: bool
     environment: Optional[str]
+    before_graceful_termination: int
     http: HTTPConfiguration
     sentry: SentryConfiguration
 
@@ -27,6 +28,7 @@ def init_config(d: dict = None) -> Configuration:
     return Configuration(
         d.get('{{ cookiecutter.package_name|upper }}_DEBUG', str(False)).upper() == str(True).upper(),
         d.get('{{ cookiecutter.package_name|upper }}_ENVIRONMENT'),
+        int(d.get('{{ cookiecutter.package_name|upper }}_BEFORE_GRACEFUL_TERMINATION', 10)),
         HTTPConfiguration(
             d.get('{{ cookiecutter.package_name|upper }}_HTTP_HOST', '0.0.0.0'),
             int(d.get('{{ cookiecutter.package_name|upper }}_HTTP_PORT', 8000)),
