@@ -1,6 +1,7 @@
 from sanic import Sanic, response
 from sentry_sdk import init as init_sentry
 from sentry_sdk.integrations.sanic import SanicIntegration
+import asyncio
 
 from . import __version__, view
 from .config import Configuration
@@ -20,6 +21,11 @@ def create_app(config: Configuration):
     @app.listener('before_server_start')
     async def init(app_, loop):  # pylint: disable=unused-variable
         pass
+
+    @app.listener('before_server_stop')
+    async def wait_before_stopping_server(app, loop):  # pylint: disable=unused-variable
+        if config.before_graceful_termination > 0:
+            await asyncio.sleep(config.before_graceful_termination)  
 
     @app.listener('after_server_stop')
     async def close(app_, loop):  # pylint: disable=unused-variable
